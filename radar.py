@@ -9,7 +9,7 @@ Uso:
 Coloque as planilhas (CSV) da Shopee ou do Mercado Livre na pasta principal ou em data/.
 Sem bibliotecas externas e sem IA paga: custo zero para rodar.
 """
-import csv, html, json, math, os, sys, unicodedata, urllib.parse, urllib.request
+import csv, html, json, math, os, sys, unicodedata, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -17,7 +17,7 @@ BASE = Path(__file__).resolve().parent
 DATA = BASE / "data"
 HIST = DATA / "postados.json"
 VITRINE = BASE / "docs" / "index.html"
-CANAL = os.environ.get("TELEGRAM_CHAT") or "@radardeoferta"
+CANAL = os.environ.get("TELEGRAM_CHAT") or "@oradardeoferta"
 REPETIR_DIAS = 7          # nao repete o mesmo produto antes disso
 ITENS_VITRINE = 30
 BRT = timezone(timedelta(hours=-3))
@@ -128,14 +128,17 @@ def reais(v):
 
 
 def texto_post(p):
-    linhas = ["🔴 RADAR LIGADO", "", p["nome"], ""]
+    """Post em HTML do Telegram: titulo em negrito, preco 'de' riscado, assinatura da marca."""
+    e = html.escape
+    linhas = ["📡 <b>RADAR LIGADO</b>", "", f"<b>{e(p['nome'])}</b>", ""]
     if p["preco_original"] > p["preco"]:
-        linhas.append(f"De {reais(p['preco_original'])} por {reais(p['preco'])} 🔥")
+        linhas.append(f"De <s>{reais(p['preco_original'])}</s>")
+        linhas.append(f"Por <b>{reais(p['preco'])}</b> 🔥")
     else:
-        linhas.append(f"Por {reais(p['preco'])} 🔥")
+        linhas.append(f"💰 Por <b>{reais(p['preco'])}</b> 🔥")
     if p["desconto"] >= 5:
-        linhas.append(f"📉 {p['desconto']}% OFF")
-    linhas += ["", f"👉 {p['link']}", "", "⏳ Oferta imperdível"]
+        linhas.append(f"📉 <b>{p['desconto']}% OFF</b>")
+    linhas += ["", "⏳ Oferta imperdível"]
     return "\n".join(linhas)
 
 
@@ -146,18 +149,26 @@ def telegram(metodo, dados):
     req = urllib.request.Request(
         f"https://api.telegram.org/bot{token}/{metodo}",
         data=urllib.parse.urlencode(dados).encode())
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read())
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read())
+    except urllib.error.HTTPError as erro:  # mostra o motivo real do Telegram
+        sys.exit(f"Telegram recusou ({erro.code}): {erro.read().decode(errors='replace')}")
 
 
 def postar(p):
     texto = texto_post(p)
+    botao = json.dumps({"inline_keyboard": [[{"text": "🛒 Ver oferta", "url": p["link"]}]]})
     if p["imagem"].startswith("http"):
         try:
-            return telegram("sendPhoto", {"chat_id": CANAL, "photo": p["imagem"], "caption": texto[:1024]})
-        except Exception as e:  # imagem quebrada: posta so o texto
+            return telegram("sendPhoto", {"chat_id": CANAL, "photo": p["imagem"], "caption": texto[:1024],
+                                          "parse_mode": "HTML", "reply_markup": botao})
+        except SystemExit as e:  # imagem quebrada: posta so o texto
             print(f"[aviso] foto falhou ({e}), enviando so texto")
-    return telegram("sendMessage", {"chat_id": CANAL, "text": texto})
+    # sem foto na planilha: usa a previa do link (foto do produto) em destaque, acima do texto
+    previa = json.dumps({"url": p["link"], "prefer_large_media": True, "show_above_text": True})
+    return telegram("sendMessage", {"chat_id": CANAL, "text": texto, "parse_mode": "HTML",
+                                    "link_preview_options": previa, "reply_markup": botao})
 
 
 def gerar_vitrine(produtos):
@@ -165,7 +176,7 @@ def gerar_vitrine(produtos):
     cards = []
     for p in produtos[:ITENS_VITRINE]:
         e = html.escape
-        img = f'<img src="{e(p["imagem"])}" alt="" loading="lazy">' if p["imagem"].startswith("http") else '<div class="sem-img">📡</div>'
+        img = f'<img src="{e(p["imagem"])}" alt="" loading="lazy">' if p["imagem"].startswith("http") else '<div class="sem-img"><svg viewBox="0 0 200 200" width="70" height="70"><g fill="none" stroke="#C27088"><circle cx="100" cy="100" r="78" stroke-width="9"/><circle cx="100" cy="100" r="50" stroke-width="7" opacity=".55"/></g><line x1="100" y1="100" x2="167" y2="61" stroke="#C27088" stroke-width="9" stroke-linecap="round"/><circle cx="100" cy="100" r="10" fill="#C27088"/><circle cx="138" cy="52" r="13" fill="#C9A46A"/></svg></div>'
         de = f'<s>{reais(p["preco_original"])}</s>' if p["preco_original"] > p["preco"] else ""
         selo = f'<span class="selo">-{p["desconto"]}%</span>' if p["desconto"] >= 5 else ""
         cards.append(f'''<a class="card" href="{e(p["link"])}" target="_blank" rel="nofollow sponsored noopener">
@@ -174,22 +185,22 @@ def gerar_vitrine(produtos):
     agora = datetime.now(BRT).strftime("%d/%m/%Y às %Hh%M")
     pagina = f'''<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Radar de Ofertas</title><meta name="description" content="A IA que caça preço baixo por você. Ofertas da Shopee e do Mercado Livre atualizadas todo dia.">
+<title>Radar de Ofertas</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Playfair+Display:ital,wght@1,700&display=swap"><meta name="description" content="Achadinhos com cara de loja cara. Ofertas da Shopee e do Mercado Livre todo dia.">
 <style>
-:root{{--bg:#0b0f0c;--card:#141a16;--txt:#eef5ef;--sub:#93a397;--verde:#2bff88;--verm:#ff4d4d}}
-*{{box-sizing:border-box;margin:0;padding:0}}body{{background:var(--bg);color:var(--txt);font:16px/1.4 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}}
-header{{padding:28px 16px 18px;text-align:center}}.logo{{font-size:28px;font-weight:800;letter-spacing:-.5px}}.logo span{{color:var(--verde)}}
-.tag{{color:var(--sub);margin-top:4px}}.cta{{display:inline-block;margin-top:16px;background:var(--verde);color:#04140a;font-weight:700;padding:12px 22px;border-radius:999px;text-decoration:none}}
+:root{{--bg:#F4EAE4;--card:#fff;--txt:#1E1A17;--sub:#7a6f66;--verde:#C27088;--verm:#D58A9E}}
+*{{box-sizing:border-box;margin:0;padding:0}}body{{background:var(--bg);color:var(--txt);font:16px/1.4 Montserrat,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}}
+header{{padding:28px 16px 18px;text-align:center}}.logo{{font:italic 700 34px 'Playfair Display',Georgia,serif}}.logo span{{font:800 15px Montserrat,sans-serif;letter-spacing:3px;background:var(--verde);color:#fff;padding:4px 10px;vertical-align:middle;margin-left:6px}}
+.tag{{color:var(--sub);margin-top:4px}}.cta{{display:inline-block;margin-top:16px;background:var(--verde);color:#fff;font-weight:700;padding:12px 22px;border-radius:999px;text-decoration:none}}
 main{{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;padding:8px 16px 32px;max-width:1100px;margin:0 auto}}
-.card{{background:var(--card);border-radius:14px;overflow:hidden;color:inherit;text-decoration:none;display:flex;flex-direction:column}}
-.foto{{position:relative;aspect-ratio:1;background:#fff}}.foto img{{width:100%;height:100%;object-fit:cover}}.sem-img{{display:grid;place-items:center;height:100%;font-size:40px;background:#1c241f}}
+.card{{background:var(--card);border-radius:14px;box-shadow:0 2px 10px rgba(30,26,23,.08);overflow:hidden;color:inherit;text-decoration:none;display:flex;flex-direction:column}}
+.foto{{position:relative;aspect-ratio:1;background:#fff}}.foto:has(.sem-img){{aspect-ratio:4/3}}.foto img{{width:100%;height:100%;object-fit:cover}}.sem-img{{display:grid;place-items:center;height:100%;font-size:40px;background:#F6DCE3}}
 .selo{{position:absolute;top:8px;left:8px;background:var(--verm);color:#fff;font-weight:700;font-size:13px;padding:3px 8px;border-radius:8px}}
 .info{{padding:10px;display:flex;flex-direction:column;gap:6px;flex:1}}h2{{font-size:14px;font-weight:500;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}}
 .preco s{{color:var(--sub);font-size:13px;margin-right:6px}}.preco b{{color:var(--verde);font-size:18px}}
 .btn{{margin-top:auto;text-align:center;border:1px solid var(--verde);color:var(--verde);border-radius:10px;padding:7px;font-size:14px;font-weight:600}}
 footer{{text-align:center;color:var(--sub);font-size:12px;padding:0 16px 28px}}
 </style></head><body>
-<header><div class="logo">📡 Radar de <span>Ofertas</span></div><p class="tag">A IA que caça preço baixo por você</p>
+<header><div class="logo">Radar <span>DE OFERTAS</span></div><p class="tag">Achadinhos com cara de loja cara</p>
 <a class="cta" href="{canal_link}">Receber ofertas no Telegram</a></header>
 <main>{"".join(cards) or "<p>Novas ofertas em breve.</p>"}</main>
 <footer>Atualizado em {agora} · Preços podem mudar a qualquer momento · Links de afiliado</footer>

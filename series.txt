@@ -1,0 +1,47 @@
+# SERIES DOS CARROSSEIS
+# Uma serie por bloco (deixe uma linha em branco entre as series).
+# TITULO = frase da capa | DESTAQUE = palavra que fica na faixa vinho
+# FOTO = nome da foto na pasta fotos/ (opcional) | PRODUTO = Item Id da planilha | nome curto
+
+TITULO: Casa de hotel gastando pouco
+DESTAQUE: hotel
+SUBTITULO: achados da Shopee
+FOTO: banheiro.jpg
+PRODUTO: 22695782878 | Jogo de toalhas luxo 4 peças
+PRODUTO: 22394942664 | Manta microfibra casal queen
+PRODUTO: 20597689349 | Protetor de colchão impermeável
+PRODUTO: 58257503731 | Kit 4 tapetes bolinha macios
+PRODUTO: 22898373049 | Espelho orgânico grande
+PRODUTO: 23694354874 | Jogo americano de couro
+
+TITULO: Natal na Shopee que parece loja cara
+DESTAQUE: loja cara
+SUBTITULO: decoração de Natal
+FOTO: natal.jpg
+PRODUTO: 21199029345 | Cascata 400 LEDs 10 metros
+PRODUTO: 22394461600 | Kit 100 bolas de Natal
+PRODUTO: 22797891574 | Globo de neve de vidro
+PRODUTO: 58219710815 | Projetor de luzes natalino
+PRODUTO: 58269796283 | Caneca Papai Noel de cerâmica
+PRODUTO: 22397737339 | Kit 4 capas de almofada de Natal
+
+TITULO: Cabelo e pele de salão sem sair de casa
+DESTAQUE: salão
+SUBTITULO: beleza na Shopee
+FOTO: skincare.jpg
+PRODUTO: 58201637252 | Truss Uso Obrigatório 260ml
+PRODUTO: 58212716558 | Óleo Extraordinário Elseve
+PRODUTO: 29564832567 | Sérum Medicube PDRN Pink
+PRODUTO: 58264684239 | Kit clareador Hidrabene
+PRODUTO: 40624794433 | Escova secadora 5 em 1
+
+TITULO: Tudo que eu não compro mais no mercado
+DESTAQUE: mercado
+SUBTITULO: na internet é mais barato
+FOTO: mercado.jpg
+PRODUTO: 23994288266 | Percarbonato tira manchas
+PRODUTO: 58260237454 | Alvejante sem cloro Calisul
+PRODUTO: 58215850369 | Saco de lixo lavanda
+PRODUTO: 16610445000 | Kit 5 toalhas umedecidas
+PRODUTO: 23794280418 | Organizador de geladeira
+PRODUTO: 58259596063 | Sabonete Natura Tododia 5 un.
