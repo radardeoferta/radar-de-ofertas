@@ -182,6 +182,8 @@ def teste():
     r = gql("query($id:OrganizationId!){posts(input:{organizationId:$id,filter:{status:[scheduled]}}){edges{node{id dueAt channelService}}}}",
             {"id": json.loads(INFO.read_text())["organizacoes"]["data"]["account"]["organizations"][0]["id"]})
     print("agendados:", json.dumps(r)[:1500])
+    (BASE / "data" / "buffer_teste.json").write_text(json.dumps({"canais": ids, "pastas": pastas(ids["pinterest"]),
+                                                             "agendados": r}, ensure_ascii=False, indent=1)[:20000])
 
 
 if __name__ == "__main__":
