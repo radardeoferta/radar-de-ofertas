@@ -1,0 +1,34 @@
+name: Buffer
+
+on:
+  push:
+    paths:
+      - "buffer.py"
+  workflow_dispatch:
+    inputs:
+      acao:
+        description: "descobrir ou agendar"
+        default: "descobrir"
+
+permissions:
+  contents: write
+
+concurrency: radar
+
+jobs:
+  buffer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Buffer
+        run: python3 buffer.py "${{ github.event.inputs.acao || 'descobrir' }}"
+        env:
+          BUFFER_TOKEN: ${{ secrets.BUFFER_TOKEN }}
+
+      - name: Salvar
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          git add -A data
+          git diff --staged --quiet || (git commit -m "Radar: Buffer atualizado" && git pull --rebase && git push)
