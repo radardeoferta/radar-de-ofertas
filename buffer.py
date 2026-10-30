@@ -31,7 +31,7 @@ def gql(query, variables=None):
 TIPOS = ["CreatePostInput", "AssetInput", "ImageAssetInput", "PostInputMetaData", "InstagramPostMetadataInput",
          "PinterestPostMetadataInput", "ShareMode", "SchedulingType", "PostType", "Channel", "PinterestBoard",
          "CreatePostPayload", "PostActionSuccess", "MutationError", "ChannelMetadata", "PinterestMetadata",
-         "Organization", "PostsInput", "Post"]
+         "Organization", "PostsInput", "Post", "TikTokPostMetadataInput", "TikTokPrivacyLevel", "Service"]
 
 
 def descobrir():
