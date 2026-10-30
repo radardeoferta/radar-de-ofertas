@@ -1595,6 +1595,89 @@
     "enumValues": null,
     "possibleTypes": null
    }
+  },
+  "TikTokPostMetadataInput": {
+   "__type": {
+    "name": "TikTokPostMetadataInput",
+    "kind": "INPUT_OBJECT",
+    "inputFields": [
+     {
+      "name": "isAiGenerated",
+      "type": {
+       "name": "Boolean",
+       "kind": "SCALAR",
+       "ofType": null
+      }
+     },
+     {
+      "name": "title",
+      "type": {
+       "name": "String",
+       "kind": "SCALAR",
+       "ofType": null
+      }
+     }
+    ],
+    "fields": null,
+    "enumValues": null,
+    "possibleTypes": null
+   }
+  },
+  "TikTokPrivacyLevel": {
+   "__type": null
+  },
+  "Service": {
+   "__type": {
+    "name": "Service",
+    "kind": "ENUM",
+    "inputFields": null,
+    "fields": null,
+    "enumValues": [
+     {
+      "name": "bluesky"
+     },
+     {
+      "name": "facebook"
+     },
+     {
+      "name": "googlebusiness"
+     },
+     {
+      "name": "instagram"
+     },
+     {
+      "name": "linkedin"
+     },
+     {
+      "name": "mastodon"
+     },
+     {
+      "name": "pinterest"
+     },
+     {
+      "name": "startPage"
+     },
+     {
+      "name": "substack"
+     },
+     {
+      "name": "threads"
+     },
+     {
+      "name": "tiktok"
+     },
+     {
+      "name": "twitter"
+     },
+     {
+      "name": "whatsapp"
+     },
+     {
+      "name": "youtube"
+     }
+    ],
+    "possibleTypes": null
+   }
   }
  },
  "organizacoes": {
