@@ -1,0 +1,91 @@
+{
+ "canais": {
+  "pinterest": "6ae4ece02f1f5ed648252b43",
+  "instagram": "6ae4ec892f1f5ed6482526b7"
+ },
+ "pastas": {
+  "decoração de natal shopee": "843651011386812917",
+  "achadinhos de beleza shopee": "843651011386812918",
+  "achadinhos shopee casa": "843651011386812916",
+  "casa bonita gastando pouco": "843651011386812921",
+  "organização da casa barata": "843651011386812919"
+ },
+ "agendados": {
+  "data": {
+   "posts": {
+    "edges": [
+     {
+      "node": {
+       "id": "6ae512da7e4ec96cc828120c",
+       "dueAt": "2026-11-03T23:00:00.000Z",
+       "channelService": "pinterest"
+      }
+     },
+     {
+      "node": {
+       "id": "6ae512da7e4ec96cc828120b",
+       "dueAt": "2026-11-03T23:00:00.000Z",
+       "channelService": "instagram"
+      }
+     },
+     {
+      "node": {
+       "id": "6ae51297d27f4ad924ba7792",
+       "dueAt": "2026-11-02T23:00:00.000Z",
+       "channelService": "pinterest"
+      }
+     },
+     {
+      "node": {
+       "id": "6ae51297d27f4ad924ba7791",
+       "dueAt": "2026-11-02T23:00:00.000Z",
+       "channelService": "instagram"
+      }
+     },
+     {
+      "node": {
+       "id": "6ae5123fe6135a6bfcf55cde",
+       "dueAt": "2026-11-01T23:00:00.000Z",
+       "channelService": "pinterest"
+      }
+     },
+     {
+      "node": {
+       "id": "6ae5123fe6135a6bfcf55cdd",
+       "dueAt": "2026-11-01T23:00:00.000Z",
+       "channelService": "instagram"
+      }
+     },
+     {
+      "node": {
+       "id": "6ae511e492454c57aa692634",
+       "dueAt": "2026-10-31T23:00:00.000Z",
+       "channelService": "pinterest"
+      }
+     },
+     {
+      "node": {
+       "id": "6ae511e492454c57aa692633",
+       "dueAt": "2026-10-31T23:00:00.000Z",
+       "channelService": "instagram"
+      }
+     },
+     {
+      "node": {
+       "id": "6ae4f03a7d52888ce62b5a6c",
+       "dueAt": "2026-11-04T23:00:00.000Z",
+       "channelService": "pinterest"
+      }
+     },
+     {
+      "node": {
+       "id": "6ae4f03a7d52888ce62b5a6b",
+       "dueAt": "2026-11-04T23:00:00.000Z",
+       "channelService": "instagram"
+      }
+     }
+    ]
+   }
+  }
+ }
+}
