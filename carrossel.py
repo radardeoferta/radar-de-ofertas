@@ -79,7 +79,7 @@ def ler_series():
 def titulo_html(titulo, destaque):
     if destaque and destaque.lower() in titulo.lower():
         i = titulo.lower().index(destaque.lower())
-        return (html.escape(titulo[:i]) + f"<mark>{html.escape(titulo[i:i + len(destaque)])}</mark>"
+        return (html.escape(titulo[:i]) + f"<mark>{html.escape(titulo[i:i + len(destaque)]).replace(' ', '&nbsp;')}</mark>"
                 + html.escape(titulo[i + len(destaque):]))
     return html.escape(titulo)
 
@@ -102,7 +102,7 @@ mark{{background:var(--rose);color:#fff;font-style:italic;padding:0 16px 2px;bor
 .sub{{margin-top:16px;font:600 30px Montserrat;letter-spacing:5px;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,0,0,.4)}}
 </style></head><body><div class="sombra"></div>
 {BRILHO.format(pos="top:860px;right:70px")}{BRILHO.format(pos="top:930px;right:130px;width:26px;height:26px")}
-<div class="txt"><div class="selo script">da série:</div>
+<div class="txt"><div class="selo script">{html.escape(s.get("selo", "da série:"))}</div>
 <h1>{titulo_html(s["titulo"], s.get("destaque", ""))}</h1>
 <div class="linha">{CORACAO}</div><div class="sub">{html.escape(s.get("subtitulo", "achadinhos da Shopee"))}</div></div>
 <div class="handle">{PERFIL}</div></body></html>"""
@@ -186,12 +186,39 @@ footer{{text-align:center;color:#8d7f7b;font-size:12px;margin-top:18px}}</style>
 <footer>Preços podem mudar a qualquer momento · Links de afiliado</footer></body></html>"""
 
 
+def baixar_fotos():
+    """Baixa para produtos/ as fotos listadas em imagens.txt que ainda nao existem."""
+    import urllib.request
+    lista = BASE / "imagens.txt"
+    if not lista.exists():
+        return
+    pasta = BASE / "produtos"
+    pasta.mkdir(exist_ok=True)
+    for linha in lista.read_text(encoding="utf-8").splitlines():
+        partes = linha.split()
+        if len(partes) != 2 or linha.startswith("#"):
+            continue
+        pid, url = partes
+        if any(pasta.glob(f"{pid}.*")):
+            continue
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            dados = urllib.request.urlopen(req, timeout=30).read()
+            if len(dados) > 5000:
+                (pasta / f"{pid}.jpg").write_bytes(dados)
+                print(f"foto baixada: {pid}")
+        except Exception as e:
+            print(f"[aviso] foto {pid} nao baixou: {e}")
+
+
 def main():
     from playwright.sync_api import sync_playwright
+    baixar_fotos()
     produtos = {p["id"]: p for p in radar.carregar_produtos()}
     pasta_fotos, pasta_prod = BASE / "fotos", BASE / "produtos"
     fotos = sorted(f for f in pasta_fotos.glob("*") if f.suffix.lower() in (".jpg", ".jpeg", ".png", ".webp")) if pasta_fotos.exists() else []
     painel = []
+    agenda = []
     with sync_playwright() as pw:
         nav = pw.chromium.launch()
         pag = nav.new_page(viewport={"width": W, "height": H})
@@ -225,6 +252,8 @@ def main():
             imgs = [f"{url}{i:02d}.png" for i in range(1, n + 1)]
             (pasta / "index.html").write_text(pagina_serie(s, itens, imgs[0]), encoding="utf-8")
             painel.append((s, url, imgs))
+            if s.get("data"):
+                agenda.append((s, url, imgs))
             print(f"OK: {s['titulo']} ({n} imagens)")
         nav.close()
 
@@ -238,6 +267,29 @@ def main():
 section{{background:#fff;border-radius:12px;padding:16px;margin-bottom:16px}}h2{{margin:0 0 6px}}.g{{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:10px}}
 img{{width:100%;border-radius:8px}}</style></head><body><h1>Carrosseis prontos</h1><p>Toque numa imagem e salve. Poste na ordem 01, 02, 03...</p>{blocos}</body></html>""",
         encoding="utf-8")
+    gerar_agenda(agenda)
+
+
+def gerar_agenda(agenda):
+    import json as _j
+    agenda.sort(key=lambda x: (x[0]["data"][-5:].split("/")[::-1], x[0].get("hora", "")))
+    blocos = []
+    for s, u, imgs in agenda:
+        leg = s.get("legenda", "").replace("\\n", "\n")
+        tit = s.get("post", s["titulo"])
+        blocos.append(f"""<section><div class="q">{html.escape(s["data"])} · {html.escape(s.get("hora", ""))}</div>
+<h2>{html.escape(tit)}</h2><div class="g">{"".join(f'<a href="{i}" download><img src="{i}" loading="lazy"></a>' for i in imgs)}</div>
+<p class="r">Título (TikTok / Pinterest)</p><pre>{html.escape(tit)}</pre><button onclick='cp(this)'>Copiar título</button>
+<p class="r">Legenda</p><pre>{html.escape(leg)}</pre><button onclick='cp(this)'>Copiar legenda</button>
+<p class="r">Link do pin (Pinterest)</p><pre>{u}</pre><button onclick='cp(this)'>Copiar link</button>
+<p class="r">Pasta no Pinterest: <b>{html.escape(s.get("pasta", ""))}</b></p></section>""")
+    (BASE / "docs" / "agenda.html").write_text(f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Agenda de posts</title><style>body{{font:15px/1.45 system-ui;background:#F4EAE4;color:#3A2E2C;margin:0;padding:16px;max-width:760px;margin:auto}}
+section{{background:#fff;border-radius:14px;padding:16px;margin-bottom:16px}}.q{{display:inline-block;background:#D58A9E;color:#fff;font-weight:700;border-radius:999px;padding:4px 12px}}
+h2{{margin:10px 0}}.g{{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}}img{{width:100%;border-radius:8px}}.r{{margin:12px 0 4px;font-weight:700;color:#C27088}}
+pre{{white-space:pre-wrap;background:#F6DCE3;border-radius:8px;padding:10px;margin:0;font:14px system-ui}}button{{margin-top:6px;border:0;background:#3A2E2C;color:#fff;border-radius:999px;padding:8px 14px;font-weight:600}}</style>
+<script>function cp(b){{navigator.clipboard.writeText(b.previousElementSibling.innerText);b.innerText='Copiado ✓';setTimeout(()=>b.innerText='Copiar',1500)}}</script></head>
+<body><h1>Agenda de posts</h1><p>Instagram, TikTok e Pinterest. Toque nas imagens para salvar, na ordem. Marque o rótulo de IA nos posts com a Nina.</p>{"".join(blocos)}</body></html>""", encoding="utf-8")
 
 
 if __name__ == "__main__":

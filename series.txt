@@ -1,18 +1,8 @@
-# SERIES DOS CARROSSEIS
-# Uma serie por bloco (deixe uma linha em branco entre as series).
-# TITULO = frase da capa | DESTAQUE = palavra que fica na faixa vinho
-# FOTO = nome da foto na pasta fotos/ (opcional) | PRODUTO = Item Id da planilha | nome curto
-
-TITULO: Casa de hotel gastando pouco
-DESTAQUE: hotel
-SUBTITULO: achados da Shopee
-FOTO: banheiro.jpg
-PRODUTO: 22695782878 | Jogo de toalhas luxo 4 peças
-PRODUTO: 22394942664 | Manta microfibra casal queen
-PRODUTO: 20597689349 | Protetor de colchão impermeável
-PRODUTO: 58257503731 | Kit 4 tapetes bolinha macios
-PRODUTO: 22898373049 | Espelho orgânico grande
-PRODUTO: 23694354874 | Jogo americano de couro
+# POSTS E SERIES DOS CARROSSEIS
+# Um post por bloco (deixe uma linha em branco entre eles).
+# TITULO = frase da capa | DESTAQUE = parte que fica na faixa rosa | SELO = etiqueta cursiva (padrao "da série:")
+# FOTO = foto da Nina na pasta fotos/ | PRODUTO = Item Id da planilha | nome curto
+# DATA, HORA, POST (titulo do post), LEGENDA (\n = quebra de linha), PASTA = entram na agenda.html
 
 TITULO: Natal na Shopee que parece loja cara
 DESTAQUE: loja cara
@@ -25,6 +15,49 @@ PRODUTO: 58219710815 | Projetor de luzes natalino
 PRODUTO: 58269796283 | Caneca Papai Noel de cerâmica
 PRODUTO: 22397737339 | Kit 4 capas de almofada de Natal
 
+TITULO: Parece decoração de shopping, mas custa R$ 34
+DESTAQUE: R$ 34
+SELO: achado do dia
+SUBTITULO: projetor natalino
+FOTO: retrato.jpg
+PRODUTO: 58219710815 | Projetor de luzes natalino
+DATA: Sáb 31/10
+HORA: 12h
+POST: Parece decoração de shopping, mas custa R$ 34 ✨
+PASTA: Decoração de Natal Shopee
+LEGENDA: Projetor de luzes de Natal para parede, com 16 temas coloridos e rotação. Transforma a sala em clima de Natal num clique ✨\n\nVocê colocaria na sua casa? 👇\n\n💌 Link na bio do Insta e no Telegram: procura oradardeoferta
+
+TITULO: Casa de hotel gastando pouco
+DESTAQUE: hotel
+SUBTITULO: achados da Shopee
+FOTO: banheiro.jpg
+PRODUTO: 22695782878 | Jogo de toalhas luxo 4 peças
+PRODUTO: 22394942664 | Manta microfibra casal queen
+PRODUTO: 20597689349 | Protetor de colchão impermeável
+PRODUTO: 58257503731 | Kit 4 tapetes bolinha macios
+PRODUTO: 22898373049 | Espelho orgânico grande
+PRODUTO: 23694354874 | Jogo americano de couro
+DATA: Sáb 31/10
+HORA: 20h
+POST: Casa de hotel gastando pouco 🤍
+PASTA: Casa Bonita Gastando Pouco
+LEGENDA: Toalha felpuda, manta macia, tapete fofinho e espelho orgânico: aquela sensação de hotel em casa, pagando pouco 🤍\n\nQual desses você levaria? 1, 2, 3...? 👇\n\n💌 Links na bio do Insta e no Telegram: procura oradardeoferta
+
+TITULO: 4 presentes de Natal até R$ 40
+DESTAQUE: até R$ 40
+SELO: lista de presentes
+SUBTITULO: amigo secreto aprovado
+FOTO: look.jpg
+PRODUTO: 22797891574 | Globo de neve de vidro
+PRODUTO: 58269796283 | Caneca Papai Noel de cerâmica
+PRODUTO: 58219710815 | Projetor de luzes natalino
+PRODUTO: 22397737339 | Kit 4 capas de almofada de Natal
+DATA: Dom 01/11
+HORA: 12h
+POST: 4 presentes de Natal até R$ 40 🎁
+PASTA: Decoração de Natal Shopee
+LEGENDA: Amigo secreto chegando e o orçamento curto? Esses 4 presentes custam até R$ 40 e têm cara de presente caro 🎁\n\nSalva pra não esquecer e marca quem precisa ver 👇\n\n💌 Links na bio do Insta e no Telegram: procura oradardeoferta
+
 TITULO: Cabelo e pele de salão sem sair de casa
 DESTAQUE: salão
 SUBTITULO: beleza na Shopee
@@ -34,8 +67,25 @@ PRODUTO: 58212716558 | Óleo Extraordinário Elseve
 PRODUTO: 29564832567 | Sérum Medicube PDRN Pink
 PRODUTO: 58264684239 | Kit clareador Hidrabene
 PRODUTO: 40624794433 | Escova secadora 5 em 1
+DATA: Dom 01/11
+HORA: 20h
+POST: Cabelo e pele de salão sem sair de casa ✨
+PASTA: Achadinhos de Beleza Shopee
+LEGENDA: Leave-in, óleo finalizador, sérum coreano e escova secadora: os queridinhos de beleza da Shopee com preço de farmácia ✨\n\nQual você já conhecia? 👇\n\n💌 Links na bio do Insta e no Telegram: procura oradardeoferta
 
-TITULO: Tudo que eu não compro mais no mercado
+TITULO: Fachada de casa de filme por R$ 58
+DESTAQUE: R$ 58
+SELO: parece caro, mas…
+SUBTITULO: cascata de LED
+FOTO: sofa.jpg
+PRODUTO: 21199029345 | Cascata 400 LEDs 10 metros
+DATA: Seg 02/11
+HORA: 12h
+POST: Fachada de casa de filme por R$ 58 🎄
+PASTA: Decoração de Natal Shopee
+LEGENDA: Cascata com 400 LEDs e 10 metros, com luz fixa ou 8 funções, pra dentro ou fora de casa. Fica igualzinho decoração de filme de Natal 🎄\n\nLuz fixa ou piscando? 👇\n\n💌 Link na bio do Insta e no Telegram: procura oradardeoferta
+
+TITULO: Pare de pagar caro no mercado
 DESTAQUE: mercado
 SUBTITULO: na internet é mais barato
 FOTO: mercado.jpg
@@ -45,3 +95,58 @@ PRODUTO: 58215850369 | Saco de lixo lavanda
 PRODUTO: 16610445000 | Kit 5 toalhas umedecidas
 PRODUTO: 23794280418 | Organizador de geladeira
 PRODUTO: 58259596063 | Sabonete Natura Tododia 5 un.
+DATA: Seg 02/11
+HORA: 20h
+POST: Pare de pagar caro no mercado 🛒
+PASTA: Organização da Casa Barata
+LEGENDA: Tira manchas, alvejante, saco de lixo perfumado, lenço umedecido e sabonete: itens de casa que saem mais baratos na Shopee do que no mercado 🛒\n\nQual você mais usa? 👇\n\n💌 Links na bio do Insta e no Telegram: procura oradardeoferta
+
+TITULO: Árvore completa com 100 bolas de Natal
+DESTAQUE: 100 bolas
+SELO: achado do dia
+SUBTITULO: kit com estrela
+FOTO: natal.jpg
+PRODUTO: 22394461600 | Kit 100 bolas de Natal
+DATA: Ter 03/11
+HORA: 12h
+POST: Árvore completa com 100 bolas de Natal 🎄
+PASTA: Decoração de Natal Shopee
+LEGENDA: Kit com 100 bolas de Natal e estrela, nas cores vermelha, dourada ou mista: a árvore inteira resolvida de uma vez 🎄\n\nTime dourado ou vermelho? 👇\n\n💌 Link na bio do Insta e no Telegram: procura oradardeoferta
+
+TITULO: Mesa de Natal com cara de loja cara
+DESTAQUE: Mesa de Natal
+SUBTITULO: mesa posta na Shopee
+FOTO: cozinha.jpg
+PRODUTO: 49368310877 | Petisqueira de Natal em madeira
+PRODUTO: 27011830084 | Talheres de Natal em inox
+PRODUTO: 23694354874 | Jogo americano de couro
+PRODUTO: 58269796283 | Caneca Papai Noel de cerâmica
+DATA: Ter 03/11
+HORA: 20h
+POST: Mesa de Natal com cara de loja cara 🍽️
+PASTA: Decoração de Natal Shopee
+LEGENDA: Petisqueira de árvore, talheres natalinos, jogo americano e caneca do Papai Noel: mesa posta de Natal sem gastar muito 🍽️\n\nQual peça você colocaria na sua mesa? 👇\n\n💌 Links na bio do Insta e no Telegram: procura oradardeoferta
+
+TITULO: Enfeite de vitrine de loja por R$ 27
+DESTAQUE: R$ 27
+SELO: achado do dia
+SUBTITULO: globo de neve de vidro
+FOTO: espelho.jpg
+PRODUTO: 22797891574 | Globo de neve de vidro
+DATA: Qua 04/11
+HORA: 12h
+POST: Enfeite de vitrine de loja por R$ 27 ❄️
+PASTA: Decoração de Natal Shopee
+LEGENDA: Globo de neve de vidro com 8 cm, daqueles que parecem saídos de vitrine de loja. Perfeito pra estante, mesa de centro ou presente ❄️\n\nVocê daria ou ficaria pra você? 👇\n\n💌 Link na bio do Insta e no Telegram: procura oradardeoferta
+
+TITULO: Sofá de revista no Natal por R$ 35
+DESTAQUE: R$ 35
+SELO: parece caro, mas…
+SUBTITULO: capas de almofada
+FOTO: cama.jpg
+PRODUTO: 22397737339 | Kit 4 capas de almofada de Natal
+DATA: Qua 04/11
+HORA: 20h
+POST: Sofá de revista no Natal por R$ 35 🎁
+PASTA: Decoração de Natal Shopee
+LEGENDA: Kit com 4 capas de almofada de Natal, 45 x 45 cm: troca o clima da sala inteira sem trocar o sofá 🎁\n\nVermelho clássico ou tons neutros? 👇\n\n💌 Link na bio do Insta e no Telegram: procura oradardeoferta
