@@ -4,11 +4,13 @@ on:
   push:
     paths:
       - "buffer.py"
+  schedule:
+    - cron: "15 12 * * *"   # todo dia 9h15 (Brasilia): agenda no Buffer o que tiver vaga
   workflow_dispatch:
     inputs:
       acao:
-        description: "descobrir ou agendar"
-        default: "descobrir"
+        description: "teste, descobrir ou agendar"
+        default: "agendar"
 
 permissions:
   contents: write
@@ -22,7 +24,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Buffer
-        run: python3 buffer.py "${{ github.event.inputs.acao || 'descobrir' }}"
+        run: |
+          ACAO="${{ github.event.inputs.acao }}"
+          if [ -z "$ACAO" ]; then
+            if [ "${{ github.event_name }}" = "schedule" ]; then ACAO=agendar; else ACAO=teste; fi
+          fi
+          python3 buffer.py "$ACAO"
         env:
           BUFFER_TOKEN: ${{ secrets.BUFFER_TOKEN }}
 
