@@ -68,11 +68,14 @@ def teste():
     INFO.write_text(json.dumps(resumo, ensure_ascii=False, indent=1))
     print(json.dumps(resumo, ensure_ascii=False)[:2000])
     feitos = json.loads(FEITOS.read_text()) if FEITOS.exists() else {}
-    for nome, reg in list(feitos.items())[-3:]:
+    for nome, reg in feitos.items():
         st, r = api("GET", f"/posts/{reg['id']}")
         post = r.get("post") or r
-        print("conferir", nome, st, json.dumps({k: post.get(k) for k in ("status", "scheduledFor", "tiktokSettings", "platforms")},
-                                             ensure_ascii=False)[:900])
+        ts = {}
+        for pl in post.get("platforms") or []:
+            ts = (pl.get("platformSpecificData") or {}).get("tiktokSettings") or ts
+        print("conferir", nome, st, post.get("status"), "privacidade=", json.dumps(ts.get("privacy_level")),
+              "musica=", ts.get("auto_add_music"))
 
 
 # ---------------- imagens 1080x1920 ----------------
