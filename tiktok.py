@@ -1,0 +1,168 @@
+#!/usr/bin/env python3
+"""Radar de Ofertas — TikTok automatico via Zernio (plano gratis).
+
+  python3 tiktok.py teste     -> mostra a conta TikTok conectada e salva data/zernio_info.json
+  python3 tiktok.py preparar  -> cria as imagens 1080x1920 (JPG) em docs/series/<serie>/tiktok/
+  python3 tiktok.py agendar   -> agenda no TikTok os posts do series.txt com DATA/HORA ainda nao agendados
+
+Horario do TikTok: post das 12h vai as 13h, post das 20h vai as 19h30.
+Para mudar um post, coloque no bloco do series.txt a linha  HORA_TIKTOK: 18h30
+Musica: o TikTok coloca sozinho uma musica recomendada (auto_add_music).
+
+Precisa do segredo ZERNIO_API_KEY. Nunca grava a chave em arquivo.
+"""
+import json, os, re, sys, urllib.request
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+from buffer import BASE, BRT, SITE, esperar_url, ler_posts, quando, slug
+
+API = "https://zernio.com/api/v1"
+INFO = BASE / "data" / "zernio_info.json"
+FEITOS = BASE / "data" / "tiktok_agendados.json"
+ROTULO_IA = "Imagem gerada por IA."
+
+
+def api(metodo, caminho, corpo=None):
+    chave = os.environ.get("ZERNIO_API_KEY")
+    if not chave:
+        sys.exit("Falta o segredo ZERNIO_API_KEY.")
+    req = urllib.request.Request(f"{API}{caminho}", method=metodo,
+                                 data=json.dumps(corpo).encode() if corpo is not None else None,
+                                 headers={"Authorization": f"Bearer {chave}", "Content-Type": "application/json",
+                                          "User-Agent": "radar-de-ofertas"})
+    try:
+        with urllib.request.urlopen(req, timeout=90) as r:
+            return r.status, json.loads(r.read() or b"{}")
+    except urllib.error.HTTPError as e:
+        corpo = e.read().decode(errors="replace")[:2000]
+        try:
+            return e.code, json.loads(corpo)
+        except ValueError:
+            return e.code, {"erro": corpo}
+
+
+def conta_tiktok():
+    st, r = api("GET", "/accounts")
+    contas = r.get("accounts") or r.get("data") or (r if isinstance(r, list) else [])
+    for c in contas:
+        if str(c.get("platform", "")).lower() == "tiktok":
+            return c.get("_id") or c.get("accountId") or c.get("id"), c
+    sys.exit(f"Nenhuma conta TikTok conectada no Zernio. Resposta ({st}): {json.dumps(r)[:800]}")
+
+
+def info_criador(conta_id):
+    st, r = api("GET", f"/accounts/{conta_id}/tiktok/creator-info?mediaType=photo")
+    return r if st < 300 else {}
+
+
+def teste():
+    conta_id, conta = conta_tiktok()
+    criador = info_criador(conta_id)
+    resumo = {"conta_id": conta_id, "usuario": conta.get("username") or conta.get("displayName"),
+              "criador": criador}
+    INFO.parent.mkdir(exist_ok=True)
+    INFO.write_text(json.dumps(resumo, ensure_ascii=False, indent=1))
+    print(json.dumps(resumo, ensure_ascii=False)[:2000])
+
+
+# ---------------- imagens 1080x1920 ----------------
+def preparar():
+    from PIL import Image, ImageFilter, ImageEnhance
+    feitos = 0
+    for p in ler_posts():
+        pasta = BASE / "docs" / "series" / slug(p["titulo"])
+        pngs = sorted(pasta.glob("[0-9][0-9].png"))
+        if not pngs:
+            continue
+        saida = pasta / "tiktok"
+        saida.mkdir(exist_ok=True)
+        for png in pngs:
+            jpg = saida / (png.stem + ".jpg")
+            if jpg.exists() and jpg.stat().st_mtime >= png.stat().st_mtime:
+                continue
+            img = Image.open(png).convert("RGB")
+            img.thumbnail((1080, 1920), Image.LANCZOS)
+            # fundo: a propria imagem ampliada e desfocada, para preencher 9:16 sem cortar nada
+            esc = max(1080 / img.width, 1920 / img.height)
+            fundo = img.resize((round(img.width * esc), round(img.height * esc)), Image.LANCZOS)
+            l, t = (fundo.width - 1080) // 2, (fundo.height - 1920) // 2
+            fundo = fundo.crop((l, t, l + 1080, t + 1920)).filter(ImageFilter.GaussianBlur(40))
+            fundo = ImageEnhance.Brightness(fundo).enhance(0.9)
+            fundo.paste(img, ((1080 - img.width) // 2, (1920 - img.height) // 2))
+            fundo.save(jpg, "JPEG", quality=90, optimize=True, progressive=True)
+            feitos += 1
+    print(f"imagens TikTok geradas: {feitos}")
+
+
+# ---------------- agendamento ----------------
+def quando_tiktok(p):
+    base = quando(p)
+    extra = p.get("hora_tiktok")
+    if extra:
+        m = re.search(r"(\d{1,2})\s*[h:]?\s*(\d{2})?", extra)
+        return base.replace(hour=int(m.group(1)), minute=int(m.group(2) or 0))
+    if base.hour == 12:
+        return base.replace(hour=13, minute=0)
+    if base.hour == 20:
+        return base.replace(hour=19, minute=30)
+    return base
+
+
+def legenda(p):
+    texto = p.get("legenda", "").replace("\\n", " ")
+    texto = re.sub(r"\s+", " ", texto).strip()  # a API do TikTok nao aceita quebra de linha
+    return f"{texto} {ROTULO_IA}".strip()[:4000]
+
+
+def agendar():
+    conta_id, _ = conta_tiktok()
+    criador = info_criador(conta_id)
+    niveis = criador.get("privacyLevels") or criador.get("privacy_level_options") or []
+    privacidade = "PUBLIC_TO_EVERYONE" if not niveis or "PUBLIC_TO_EVERYONE" in niveis else niveis[0]
+    feitos = json.loads(FEITOS.read_text()) if FEITOS.exists() else {}
+    agora = datetime.now(BRT)
+    for p in ler_posts():
+        s = slug(p["titulo"])
+        if feitos.get(s):
+            continue
+        hora = quando_tiktok(p)
+        if hora < agora + timedelta(minutes=20):
+            continue
+        jpgs = sorted((BASE / "docs" / "series" / s / "tiktok").glob("*.jpg"))
+        if not jpgs:
+            print(f"[aviso] sem imagens TikTok para {s}")
+            continue
+        urls = [f"{SITE}/series/{s}/tiktok/{j.name}" for j in jpgs][:35]
+        if not esperar_url(urls[-1], limite=900):
+            print(f"[aviso] imagens ainda nao estao no site: {s}")
+            continue
+        corpo = {
+            "content": p.get("post", p["titulo"])[:90],
+            "mediaItems": [{"type": "image", "url": u} for u in urls],
+            "platforms": [{"platform": "tiktok", "accountId": conta_id}],
+            "scheduledFor": hora.strftime("%Y-%m-%dT%H:%M:00"),
+            "timezone": "America/Sao_Paulo",
+            "tiktokSettings": {
+                "media_type": "photo",
+                "photo_cover_index": 0,
+                "description": legenda(p),
+                "auto_add_music": True,
+                "privacy_level": privacidade,
+                "allow_comment": True,
+                "content_preview_confirmed": True,
+                "express_consent_given": True,
+            },
+        }
+        st, r = api("POST", "/posts", corpo)
+        post = r.get("post") or {}
+        ok = st < 300 and post.get("status") in ("scheduled", "publishing", "published")
+        print("tiktok", s, hora.strftime("%d/%m %H:%M"), "OK" if ok else f"ERRO {st}: {json.dumps(r)[:600]}")
+        if ok:
+            feitos[s] = {"id": post.get("_id"), "quando": hora.isoformat()}
+            FEITOS.write_text(json.dumps(feitos, ensure_ascii=False, indent=1))
+
+
+if __name__ == "__main__":
+    modo = sys.argv[1] if len(sys.argv) > 1 else "teste"
+    {"teste": teste, "preparar": preparar, "agendar": agendar}.get(modo, teste)()

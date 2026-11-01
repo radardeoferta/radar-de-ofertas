@@ -1,0 +1,54 @@
+name: TikTok
+
+on:
+  push:
+    paths:
+      - "tiktok.py"
+      - ".github/workflows/tiktok.yml"
+  workflow_run:
+    workflows: ["Gerar carrosseis"]
+    types: [completed]
+  schedule:
+    - cron: "20 12 * * *"   # todo dia 9h20 (Brasilia): agenda no TikTok via Zernio
+  workflow_dispatch:
+    inputs:
+      acao:
+        description: "agendar ou teste"
+        default: "agendar"
+
+permissions:
+  contents: write
+
+concurrency: radar
+
+jobs:
+  tiktok:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preparar imagens 9:16
+        run: |
+          pip install pillow
+          python3 tiktok.py preparar
+
+      - name: Publicar imagens no site
+        run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          git add -A docs
+          git diff --staged --quiet || (git commit -m "Radar: imagens TikTok" && git pull --rebase && git push)
+
+      - name: Agendar no TikTok
+        run: |
+          ACAO="${{ github.event.inputs.acao }}"
+          python3 tiktok.py teste
+          python3 tiktok.py "${ACAO:-agendar}"
+        env:
+          ZERNIO_API_KEY: ${{ secrets.ZERNIO_API_KEY }}
+
+      - name: Salvar
+        if: always()
+        run: |
+          git add -A data
+          git diff --staged --quiet || (git commit -m "Radar: TikTok atualizado" && git pull --rebase && git push)
