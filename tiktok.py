@@ -167,6 +167,25 @@ def enviar(p, conta_id, privacidade, hora=None):
     return None
 
 
+def corrigir(feitos):
+    """Apaga e libera para recriar os agendados com privacidade em formato errado (bug de 01/11)."""
+    for nome, reg in list(feitos.items()):
+        st, r = api("GET", f"/posts/{reg['id']}")
+        post = r.get("post") or r
+        if post.get("status") != "scheduled":
+            continue
+        ts = {}
+        for pl in post.get("platforms") or []:
+            ts = (pl.get("platformSpecificData") or {}).get("tiktokSettings") or ts
+        if isinstance(ts.get("privacy_level"), str):
+            continue
+        st, r = api("DELETE", f"/posts/{reg['id']}")
+        print("corrigir", nome, "apagado" if st < 300 else f"ERRO ao apagar {st}: {json.dumps(r)[:300]}")
+        if st < 300:
+            del feitos[nome]
+            FEITOS.write_text(json.dumps(feitos, ensure_ascii=False, indent=1))
+
+
 def agendar():
     conta_id, _ = conta_tiktok()
     criador = info_criador(conta_id)
@@ -175,6 +194,7 @@ def agendar():
     privacidade = "PUBLIC_TO_EVERYONE" if not niveis or "PUBLIC_TO_EVERYONE" in niveis else niveis[0]
     feitos = json.loads(FEITOS.read_text()) if FEITOS.exists() else {}
     posts = ler_posts()
+    corrigir(feitos)
 
     def salvar():
         FEITOS.write_text(json.dumps(feitos, ensure_ascii=False, indent=1))
