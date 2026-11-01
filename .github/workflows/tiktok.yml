@@ -42,8 +42,8 @@ jobs:
       - name: Agendar no TikTok
         run: |
           ACAO="${{ github.event.inputs.acao }}"
-          python3 tiktok.py teste
-          python3 tiktok.py "${ACAO:-agendar}"
+          set -o pipefail
+          { python3 tiktok.py teste && python3 tiktok.py "${ACAO:-agendar}"; } 2>&1 | tee data/tiktok_log.txt
         env:
           ZERNIO_API_KEY: ${{ secrets.ZERNIO_API_KEY }}
 
