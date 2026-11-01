@@ -5,6 +5,8 @@
   python3 tiktok.py preparar  -> cria as imagens 1080x1920 (JPG) em docs/series/<serie>/tiktok/
   python3 tiktok.py agendar   -> agenda no TikTok os posts do series.txt com DATA/HORA ainda nao agendados
 
+Postar agora: escreva o TITULO do post (um por linha) em tiktok_agora.txt e suba no GitHub.
+
 Horario do TikTok: post das 12h vai as 13h, post das 20h vai as 19h30.
 Para mudar um post, coloque no bloco do series.txt a linha  HORA_TIKTOK: 18h30
 Musica: o TikTok coloca sozinho uma musica recomendada (auto_add_music).
@@ -20,6 +22,7 @@ from buffer import BASE, BRT, SITE, esperar_url, ler_posts, quando, slug
 API = "https://zernio.com/api/v1"
 INFO = BASE / "data" / "zernio_info.json"
 FEITOS = BASE / "data" / "tiktok_agendados.json"
+AGORA = BASE / "tiktok_agora.txt"
 ROTULO_IA = "Imagem gerada por IA."
 
 
@@ -64,6 +67,12 @@ def teste():
     INFO.parent.mkdir(exist_ok=True)
     INFO.write_text(json.dumps(resumo, ensure_ascii=False, indent=1))
     print(json.dumps(resumo, ensure_ascii=False)[:2000])
+    feitos = json.loads(FEITOS.read_text()) if FEITOS.exists() else {}
+    for nome, reg in list(feitos.items())[-3:]:
+        st, r = api("GET", f"/posts/{reg['id']}")
+        post = r.get("post") or r
+        print("conferir", nome, st, json.dumps({k: post.get(k) for k in ("status", "scheduledFor", "tiktokSettings", "platforms")},
+                                             ensure_ascii=False)[:900])
 
 
 # ---------------- imagens 1080x1920 ----------------
@@ -115,52 +124,88 @@ def legenda(p):
     return f"{texto} {ROTULO_IA}".strip()[:4000]
 
 
+def enviar(p, conta_id, privacidade, hora=None):
+    """Agenda (hora) ou publica agora (hora=None). Devolve o registro ou None."""
+    s = slug(p["titulo"])
+    jpgs = sorted((BASE / "docs" / "series" / s / "tiktok").glob("*.jpg"))
+    if not jpgs:
+        print(f"[aviso] sem imagens TikTok para {s}")
+        return None
+    urls = [f"{SITE}/series/{s}/tiktok/{j.name}" for j in jpgs][:35]
+    if not esperar_url(urls[-1], limite=900):
+        print(f"[aviso] imagens ainda nao estao no site: {s}")
+        return None
+    corpo = {
+        "content": p.get("post", p["titulo"])[:90],
+        "mediaItems": [{"type": "image", "url": u} for u in urls],
+        "platforms": [{"platform": "tiktok", "accountId": conta_id}],
+        "tiktokSettings": {
+            "media_type": "photo",
+            "photo_cover_index": 0,
+            "description": legenda(p),
+            "auto_add_music": True,
+            "privacy_level": privacidade,
+            "allow_comment": True,
+            "content_preview_confirmed": True,
+            "express_consent_given": True,
+        },
+    }
+    if hora:
+        corpo.update({"scheduledFor": hora.strftime("%Y-%m-%dT%H:%M:00"), "timezone": "America/Sao_Paulo"})
+    else:
+        corpo["publishNow"] = True
+    st, r = api("POST", "/posts", corpo)
+    post = r.get("post") or {}
+    ok = st < 300 and post.get("status") in ("scheduled", "publishing", "published")
+    rotulo = hora.strftime("%d/%m %H:%M") if hora else "AGORA"
+    print("tiktok", s, rotulo, "OK" if ok else f"ERRO {st}: {json.dumps(r)[:600]}")
+    if ok:
+        return {"id": post.get("_id"), "quando": (hora or datetime.now(BRT)).isoformat()}
+    return None
+
+
 def agendar():
     conta_id, _ = conta_tiktok()
     criador = info_criador(conta_id)
-    niveis = criador.get("privacyLevels") or criador.get("privacy_level_options") or []
+    niveis = [n.get("value", n) if isinstance(n, dict) else n
+              for n in (criador.get("privacyLevels") or criador.get("privacy_level_options") or [])]
     privacidade = "PUBLIC_TO_EVERYONE" if not niveis or "PUBLIC_TO_EVERYONE" in niveis else niveis[0]
     feitos = json.loads(FEITOS.read_text()) if FEITOS.exists() else {}
+    posts = ler_posts()
+
+    def salvar():
+        FEITOS.write_text(json.dumps(feitos, ensure_ascii=False, indent=1))
+
+    # 1) postar agora o que estiver em tiktok_agora.txt
+    if AGORA.exists():
+        pedidos = [slug(l) for l in AGORA.read_text(encoding="utf-8").splitlines() if l.strip() and not l.startswith("#")]
+        for pedido in pedidos:
+            p = next((x for x in posts if slug(x["titulo"]) == pedido or slug(x.get("post", "")) == pedido), None)
+            if not p:
+                print(f"[aviso] post nao encontrado no series.txt: {pedido}")
+                continue
+            if feitos.get(slug(p["titulo"])):
+                print(f"[aviso] ja foi para o TikTok: {pedido}")
+                continue
+            reg = enviar(p, conta_id, privacidade)
+            if reg:
+                feitos[slug(p["titulo"])] = reg
+                salvar()
+        AGORA.write_text("# Escreva aqui o TITULO do post para postar agora no TikTok (um por linha)\n", encoding="utf-8")
+
+    # 2) agendar os proximos
     agora = datetime.now(BRT)
-    for p in ler_posts():
+    for p in posts:
         s = slug(p["titulo"])
         if feitos.get(s):
             continue
         hora = quando_tiktok(p)
         if hora < agora + timedelta(minutes=20):
             continue
-        jpgs = sorted((BASE / "docs" / "series" / s / "tiktok").glob("*.jpg"))
-        if not jpgs:
-            print(f"[aviso] sem imagens TikTok para {s}")
-            continue
-        urls = [f"{SITE}/series/{s}/tiktok/{j.name}" for j in jpgs][:35]
-        if not esperar_url(urls[-1], limite=900):
-            print(f"[aviso] imagens ainda nao estao no site: {s}")
-            continue
-        corpo = {
-            "content": p.get("post", p["titulo"])[:90],
-            "mediaItems": [{"type": "image", "url": u} for u in urls],
-            "platforms": [{"platform": "tiktok", "accountId": conta_id}],
-            "scheduledFor": hora.strftime("%Y-%m-%dT%H:%M:00"),
-            "timezone": "America/Sao_Paulo",
-            "tiktokSettings": {
-                "media_type": "photo",
-                "photo_cover_index": 0,
-                "description": legenda(p),
-                "auto_add_music": True,
-                "privacy_level": privacidade,
-                "allow_comment": True,
-                "content_preview_confirmed": True,
-                "express_consent_given": True,
-            },
-        }
-        st, r = api("POST", "/posts", corpo)
-        post = r.get("post") or {}
-        ok = st < 300 and post.get("status") in ("scheduled", "publishing", "published")
-        print("tiktok", s, hora.strftime("%d/%m %H:%M"), "OK" if ok else f"ERRO {st}: {json.dumps(r)[:600]}")
-        if ok:
-            feitos[s] = {"id": post.get("_id"), "quando": hora.isoformat()}
-            FEITOS.write_text(json.dumps(feitos, ensure_ascii=False, indent=1))
+        reg = enviar(p, conta_id, privacidade, hora)
+        if reg:
+            feitos[s] = reg
+            salvar()
 
 
 if __name__ == "__main__":

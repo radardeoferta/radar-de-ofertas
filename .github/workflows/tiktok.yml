@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "tiktok.py"
+      - "tiktok_agora.txt"
       - ".github/workflows/tiktok.yml"
   workflow_run:
     workflows: ["Gerar carrosseis"]
@@ -50,5 +51,5 @@ jobs:
       - name: Salvar
         if: always()
         run: |
-          git add -A data
+          git add -A data tiktok_agora.txt
           git diff --staged --quiet || (git commit -m "Radar: TikTok atualizado" && git pull --rebase && git push)
