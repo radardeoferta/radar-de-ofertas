@@ -1,0 +1,59 @@
+{
+ "conta_id": "6ae72ffe239c2de2a9a2abf9",
+ "usuario": "radardeoferta_oficial",
+ "criador": {
+  "creator": {
+   "nickname": "Nina | Achadinhos da Shoppee",
+   "avatarUrl": "https://p19-common-sign.tiktokcdn.com/tos-alisg-avt-0068/04a78b95aacacb05254e10ca8f9413ff~tplv-tiktokx-cropcenter:168:168.jpeg?dr=14577&refresh_token=d96be8d2&x-expires=1793707200&x-signature=BNRmK84%2F2uGkPYipGpdEb626G3g%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=8aecc5ac&idc=my3",
+   "isVerified": false,
+   "canPostMore": true
+  },
+  "privacyLevels": [
+   {
+    "value": "PUBLIC_TO_EVERYONE",
+    "label": "Public To Everyone"
+   },
+   {
+    "value": "MUTUAL_FOLLOW_FRIENDS",
+    "label": "Mutual Follow Friends"
+   },
+   {
+    "value": "SELF_ONLY",
+    "label": "Self Only"
+   }
+  ],
+  "postingLimits": {
+   "maxVideoDurationSec": 3600,
+   "interactionSettings": {
+    "allow_comment": {
+     "enabled": true,
+     "required": true,
+     "default": false,
+     "label": "Allow Comment"
+    },
+    "allow_duet": null,
+    "allow_stitch": null
+   }
+  },
+  "commercialContentTypes": [
+   {
+    "value": "none",
+    "label": "No Commercial Content"
+   },
+   {
+    "value": "brand_organic",
+    "label": "Your Brand",
+    "requires": [
+     "is_brand_organic_post"
+    ]
+   },
+   {
+    "value": "brand_content",
+    "label": "Branded Content",
+    "requires": [
+     "brand_partner_promote"
+    ]
+   }
+  ]
+ }
+}
