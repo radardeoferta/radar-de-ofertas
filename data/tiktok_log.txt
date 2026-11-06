@@ -1,4 +1,4 @@
-{"conta_id": "6ae72ffe239c2de2a9a2abf9", "usuario": "giustuart.indica", "criador": {"creator": {"nickname": "Nina | Achadinhos da Shoppee", "avatarUrl": "https://p16-common-sign.tiktokcdn.com/tos-alisg-avt-0068/04a78b95aacacb05254e10ca8f9413ff~tplv-tiktokx-cropcenter:168:168.jpeg?dr=14577&refresh_token=94badc67&x-expires=1794056400&x-signature=iMP3yev0AUVliVQc91E4N4t1jh8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=8aecc5ac&idc=my3", "isVerified": false, "canPostMore": true}, "privacyLevels": [{"value": "PUBLIC_TO_EVERYONE", "label": "Public To Everyone"}, {"value": "MUTUAL_FOLLOW_FRIENDS", "label": "Mutual Follow Friends"}, {"value": "SELF_ONLY", "label": "Self Only"}], "postingLimits": {"maxVideoDurationSec": 3600, "interactionSettings": {"allow_comment": {"enabled": true, "required": true, "default": false, "label": "Allow Comment"}, "allow_duet": null, "allow_stitch": null}}, "commercialContentTypes": [{"value": "none", "label": "No Commercial Content"}, {"value": "brand_organic", "label": "Your Brand", "requires": ["is_brand_organic_post"]}, {"value": "brand_content", "label": "Branded Content", "requires": ["brand_partner_promote"]}]}}
+{"conta_id": "6ae72ffe239c2de2a9a2abf9", "usuario": "giustuart.indica", "criador": {"creator": {"nickname": "Nina | Achadinhos da Shoppee", "avatarUrl": "https://p16-common-sign.tiktokcdn.com/tos-alisg-avt-0068/04a78b95aacacb05254e10ca8f9413ff~tplv-tiktokx-cropcenter:168:168.jpeg?dr=14577&refresh_token=568a6631&x-expires=1794142800&x-signature=ku55McCbJFMpQTqL0CGPTkLrc1U%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=8aecc5ac&idc=my2", "isVerified": false, "canPostMore": true}, "privacyLevels": [{"value": "PUBLIC_TO_EVERYONE", "label": "Public To Everyone"}, {"value": "MUTUAL_FOLLOW_FRIENDS", "label": "Mutual Follow Friends"}, {"value": "SELF_ONLY", "label": "Self Only"}], "postingLimits": {"maxVideoDurationSec": 3600, "interactionSettings": {"allow_comment": {"enabled": true, "required": true, "default": false, "label": "Allow Comment"}, "allow_duet": null, "allow_stitch": null}}, "commercialContentTypes": [{"value": "none", "label": "No Commercial Content"}, {"value": "brand_organic", "label": "Your Brand", "requires": ["is_brand_organic_post"]}, {"value": "brand_content", "label": "Branded Content", "requires": ["brand_partner_promote"]}]}}
 conferir casa-de-hotel-gastando-pouco 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir 4-presentes-de-natal-ate-r-40 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir cabelo-e-pele-de-salao-sem-sair-de-casa 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
@@ -8,8 +8,8 @@ conferir arvore-completa-com-100-bolas-de-natal 200 published privacidade= "PUBL
 conferir mesa-de-natal-com-cara-de-loja-cara 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir enfeite-de-vitrine-de-loja-por-r-27 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir sofa-de-revista-no-natal-por-r-35 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir chaleira-de-inox-com-cara-de-loja-cara-por-r-39 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir presentes-de-natal-pra-ele-que-parecem-caros 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
+conferir chaleira-de-inox-com-cara-de-loja-cara-por-r-39 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
+conferir presentes-de-natal-pra-ele-que-parecem-caros 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir presente-de-natal-com-significado-por-r-11 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir look-de-loja-cara-gastando-pouco 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir almofada-bordada-de-loja-de-decoracao-por-r-62 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
@@ -18,3 +18,17 @@ conferir acabamento-de-salao-em-casa-por-r-32 200 scheduled privacidade= "PUBLIC
 conferir treino-com-cara-de-marca-cara 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir 3-ideias-de-amigo-secreto-ate-r-30 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir banheiro-de-hotel-gastando-pouco 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
+tiktok espelho-de-loja-de-decoracao-por-r-79 10/11 13:00 OK
+tiktok cama-de-pousada-chique-gastando-pouco 10/11 19:30 OK
+tiktok 4-presentes-pra-ela-ate-r-40 11/11 13:00 OK
+tiktok cozinha-de-revista-gastando-pouco 11/11 19:30 OK
+tiktok parece-tratamento-de-salao-mas-custa-r-50 12/11 13:00 OK
+tiktok skincare-de-clinica-gastando-pouco 12/11 19:30 OK
+tiktok mesa-de-restaurante-chique-por-r-19 13/11 13:00 OK
+tiktok comece-sua-lista-da-black-friday 13/11 19:30 OK
+tiktok parece-calca-de-grife-mas-custa-r-57 14/11 13:00 OK
+tiktok amigo-secreto-pra-ele-ate-r-45 14/11 19:30 OK
+tiktok some-com-a-bagunca-por-r-7 15/11 13:00 OK
+tiktok verao-com-cara-de-loja-cara 15/11 19:30 OK
+tiktok 3-lembrancinhas-de-natal-ate-r-24 16/11 13:00 OK
+tiktok casa-pronta-pras-visitas-de-fim-de-ano 16/11 19:30 OK

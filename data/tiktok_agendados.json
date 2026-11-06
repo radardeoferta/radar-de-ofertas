@@ -74,5 +74,61 @@
  "banheiro-de-hotel-gastando-pouco": {
   "id": "6ae8d28041a43e5e3f68fdc0",
   "quando": "2026-11-09T19:30:00-03:00"
+ },
+ "espelho-de-loja-de-decoracao-por-r-79": {
+  "id": "6aedd2ee1afbe9c04d848b9f",
+  "quando": "2026-11-10T13:00:00-03:00"
+ },
+ "cama-de-pousada-chique-gastando-pouco": {
+  "id": "6aedd2f0cfd9d4b9ab003a20",
+  "quando": "2026-11-10T19:30:00-03:00"
+ },
+ "4-presentes-pra-ela-ate-r-40": {
+  "id": "6aedd2f26d82e561be27d153",
+  "quando": "2026-11-11T13:00:00-03:00"
+ },
+ "cozinha-de-revista-gastando-pouco": {
+  "id": "6aedd2f36d82e561be27d16a",
+  "quando": "2026-11-11T19:30:00-03:00"
+ },
+ "parece-tratamento-de-salao-mas-custa-r-50": {
+  "id": "6aedd2f46d82e561be27d177",
+  "quando": "2026-11-12T13:00:00-03:00"
+ },
+ "skincare-de-clinica-gastando-pouco": {
+  "id": "6aedd2f56d82e561be27d184",
+  "quando": "2026-11-12T19:30:00-03:00"
+ },
+ "mesa-de-restaurante-chique-por-r-19": {
+  "id": "6aedd2f602f922800e4c5bc4",
+  "quando": "2026-11-13T13:00:00-03:00"
+ },
+ "comece-sua-lista-da-black-friday": {
+  "id": "6aedd2f802f922800e4c5bca",
+  "quando": "2026-11-13T19:30:00-03:00"
+ },
+ "parece-calca-de-grife-mas-custa-r-57": {
+  "id": "6aedd2f9cfd9d4b9ab003a32",
+  "quando": "2026-11-14T13:00:00-03:00"
+ },
+ "amigo-secreto-pra-ele-ate-r-45": {
+  "id": "6aedd2fa6d82e561be27d19a",
+  "quando": "2026-11-14T19:30:00-03:00"
+ },
+ "some-com-a-bagunca-por-r-7": {
+  "id": "6aedd2fb02f922800e4c5be4",
+  "quando": "2026-11-15T13:00:00-03:00"
+ },
+ "verao-com-cara-de-loja-cara": {
+  "id": "6aedd2fc02f922800e4c5bea",
+  "quando": "2026-11-15T19:30:00-03:00"
+ },
+ "3-lembrancinhas-de-natal-ate-r-24": {
+  "id": "6aedd2fd02f922800e4c5bf3",
+  "quando": "2026-11-16T13:00:00-03:00"
+ },
+ "casa-pronta-pras-visitas-de-fim-de-ano": {
+  "id": "6aedd3006d82e561be27d1be",
+  "quando": "2026-11-16T19:30:00-03:00"
  }
 }
