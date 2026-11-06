@@ -156,7 +156,7 @@ def agendar():
         texto = p.get("legenda", "").replace("\\n", "\n")
         reg = feitos.setdefault(s, {})
         if "instagram" in ids and not reg.get("instagram"):
-            meta = {"instagram": {"type": "carousel" if n > 1 else "post", "shouldShareToFeed": True, "isAiGenerated": True}}
+            meta = {"instagram": {"type": "post", "shouldShareToFeed": True, "isAiGenerated": True}}
             r = criar(ids["instagram"], texto, imgs[:10], meta, due)
             ok = ((r.get("data") or {}).get("createPost") or {}).get("post")
             print("instagram", s, "OK" if ok else r)
