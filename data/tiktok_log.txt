@@ -1,4 +1,4 @@
-{"conta_id": "6ae72ffe239c2de2a9a2abf9", "usuario": "giustuart.indica", "criador": {"creator": {"nickname": "Nina | Achadinhos da Shoppee", "avatarUrl": "https://p16-common-sign.tiktokcdn.com/tos-alisg-avt-0068/04a78b95aacacb05254e10ca8f9413ff~tplv-tiktokx-cropcenter:168:168.jpeg?dr=14577&refresh_token=fdd8b20c&x-expires=1794402000&x-signature=Rk1%2F3bx5wgLqrbnTDdPFZmN13YA%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=8aecc5ac&idc=my2", "isVerified": false, "canPostMore": true}, "privacyLevels": [{"value": "PUBLIC_TO_EVERYONE", "label": "Public To Everyone"}, {"value": "MUTUAL_FOLLOW_FRIENDS", "label": "Mutual Follow Friends"}, {"value": "SELF_ONLY", "label": "Self Only"}], "postingLimits": {"maxVideoDurationSec": 3600, "interactionSettings": {"allow_comment": {"enabled": true, "required": true, "default": false, "label": "Allow Comment"}, "allow_duet": null, "allow_stitch": null}}, "commercialContentTypes": [{"value": "none", "label": "No Commercial Content"}, {"value": "brand_organic", "label": "Your Brand", "requires": ["is_brand_organic_post"]}, {"value": "brand_content", "label": "Branded Content", "requires": ["brand_partner_promote"]}]}}
+{"conta_id": "6ae72ffe239c2de2a9a2abf9", "usuario": "giustuart.indica", "criador": {"creator": {"nickname": "Nina | Achadinhos da Shoppee", "avatarUrl": "https://p19-common-sign.tiktokcdn.com/tos-alisg-avt-0068/04a78b95aacacb05254e10ca8f9413ff~tplv-tiktokx-cropcenter:168:168.jpeg?dr=14577&refresh_token=5b6476f9&x-expires=1794405600&x-signature=9PPul8NwzPlCVOb7NWTeifiZ8OU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=8aecc5ac&idc=my2", "isVerified": false, "canPostMore": true}, "privacyLevels": [{"value": "PUBLIC_TO_EVERYONE", "label": "Public To Everyone"}, {"value": "MUTUAL_FOLLOW_FRIENDS", "label": "Mutual Follow Friends"}, {"value": "SELF_ONLY", "label": "Self Only"}], "postingLimits": {"maxVideoDurationSec": 3600, "interactionSettings": {"allow_comment": {"enabled": true, "required": true, "default": false, "label": "Allow Comment"}, "allow_duet": null, "allow_stitch": null}}, "commercialContentTypes": [{"value": "none", "label": "No Commercial Content"}, {"value": "brand_organic", "label": "Your Brand", "requires": ["is_brand_organic_post"]}, {"value": "brand_content", "label": "Branded Content", "requires": ["brand_partner_promote"]}]}}
 conferir casa-de-hotel-gastando-pouco 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir 4-presentes-de-natal-ate-r-40 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir cabelo-e-pele-de-salao-sem-sair-de-casa 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
@@ -32,3 +32,17 @@ conferir some-com-a-bagunca-por-r-7 200 scheduled privacidade= "PUBLIC_TO_EVERYO
 conferir verao-com-cara-de-loja-cara 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir 3-lembrancinhas-de-natal-ate-r-24 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
 conferir casa-pronta-pras-visitas-de-fim-de-ano 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
+tiktok parece-manta-de-hotel-mas-custa-r-54 17/11 13:00 OK
+tiktok presentes-pra-ele-que-treina 17/11 19:30 OK
+tiktok geladeira-organizada-por-r-5 18/11 13:00 OK
+tiktok banheiro-de-spa-gastando-pouco 18/11 19:30 OK
+tiktok 3-presentes-de-beleza-ate-r-75 19/11 13:00 OK
+tiktok ceia-de-natal-com-cara-de-buffet 19/11 19:30 OK
+tiktok parece-fone-de-marca-mas-custa-r-42 20/11 13:00 OK
+tiktok lista-da-black-friday-pra-casa 20/11 19:30 OK
+tiktok escova-pra-familia-toda-por-r-29 21/11 13:00 OK
+tiktok look-de-fim-de-ano-gastando-pouco 21/11 19:30 OK
+tiktok 4-lembrancinhas-de-amigo-secreto-ate-r-33 22/11 13:00 OK
+tiktok sala-de-natal-de-revista 22/11 19:30 OK
+tiktok parece-escova-de-salao-mas-custa-r-50 23/11 13:00 OK
+tiktok faxina-de-fim-de-ano-gastando-pouco 23/11 19:30 OK
