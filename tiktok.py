@@ -26,7 +26,9 @@ AGORA = BASE / "tiktok_agora.txt"
 ROTULO_IA = "Imagem gerada por IA."
 
 
-def api(metodo, caminho, corpo=None):
+def api(metodo, caminho, corpo=None, tentativa=0):
+    import time
+    time.sleep(1.2)  # limite do Zernio: 60 chamadas por minuto
     chave = os.environ.get("ZERNIO_API_KEY")
     if not chave:
         sys.exit("Falta o segredo ZERNIO_API_KEY.")
@@ -38,6 +40,9 @@ def api(metodo, caminho, corpo=None):
         with urllib.request.urlopen(req, timeout=90) as r:
             return r.status, json.loads(r.read() or b"{}")
     except urllib.error.HTTPError as e:
+        if e.code == 429 and tentativa < 3:
+            time.sleep(15)
+            return api(metodo, caminho, corpo, tentativa + 1)
         corpo = e.read().decode(errors="replace")[:2000]
         try:
             return e.code, json.loads(corpo)
@@ -236,6 +241,8 @@ def cancelar():
     feitos = json.loads(FEITOS.read_text()) if FEITOS.exists() else {}
     publicados = []
     for nome, reg in list(feitos.items()):
+        if reg.get("cancelado"):
+            continue
         st, r = api("GET", f"/posts/{reg['id']}")
         post = r.get("post") or r
         status = post.get("status")
