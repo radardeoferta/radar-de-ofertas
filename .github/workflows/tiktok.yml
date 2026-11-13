@@ -1,21 +1,17 @@
 name: TikTok
 
+# PAUSADO em 13/11/2026: o TikTok virou a conta Giu Indica (@giustuart.indica).
+# Nao agenda mais posts da Nina. Roda so quando este arquivo ou o tiktok.py mudam, e so cancela.
 on:
   push:
     paths:
       - "tiktok.py"
-      - "tiktok_agora.txt"
       - ".github/workflows/tiktok.yml"
-  workflow_run:
-    workflows: ["Gerar carrosseis"]
-    types: [completed]
-  schedule:
-    - cron: "20 12 * * *"   # todo dia 9h20 (Brasilia): agenda no TikTok via Zernio
   workflow_dispatch:
     inputs:
       acao:
-        description: "agendar ou teste"
-        default: "agendar"
+        description: "cancelar, teste ou agendar"
+        default: "cancelar"
 
 permissions:
   contents: write
@@ -28,28 +24,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Preparar imagens 9:16
-        run: |
-          pip install pillow
-          python3 tiktok.py preparar
-
-      - name: Publicar imagens no site
-        run: |
-          git config user.name "radar-bot"
-          git config user.email "radar-bot@users.noreply.github.com"
-          git add -A docs
-          git diff --staged --quiet || (git commit -m "Radar: imagens TikTok" && git pull --rebase && git push)
-
       - name: Agendar no TikTok
         run: |
           ACAO="${{ github.event.inputs.acao }}"
           set -o pipefail
-          { python3 tiktok.py teste && python3 tiktok.py "${ACAO:-agendar}"; } 2>&1 | tee data/tiktok_log.txt
+          { python3 tiktok.py "${ACAO:-cancelar}"; } 2>&1 | tee data/tiktok_log.txt
         env:
           ZERNIO_API_KEY: ${{ secrets.ZERNIO_API_KEY }}
 
       - name: Salvar
         if: always()
         run: |
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
           git add -A data tiktok_agora.txt
           git diff --staged --quiet || (git commit -m "Radar: TikTok atualizado" && git pull --rebase && git push)

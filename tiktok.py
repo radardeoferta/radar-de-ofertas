@@ -231,6 +231,26 @@ def agendar():
             salvar()
 
 
+def cancelar():
+    """Para tudo da Nina: apaga no Zernio os posts ainda agendados e lista os ja publicados."""
+    feitos = json.loads(FEITOS.read_text()) if FEITOS.exists() else {}
+    publicados = []
+    for nome, reg in list(feitos.items()):
+        st, r = api("GET", f"/posts/{reg['id']}")
+        post = r.get("post") or r
+        status = post.get("status")
+        if status in ("scheduled", "draft", "pending"):
+            st, r = api("DELETE", f"/posts/{reg['id']}")
+            print("cancelado", nome, reg["quando"][:16], "OK" if st < 300 else f"ERRO {st}: {json.dumps(r)[:300]}")
+            if st < 300:
+                feitos[nome] = {**reg, "cancelado": True}
+        else:
+            publicados.append((reg["quando"][:16], nome, status))
+    FEITOS.write_text(json.dumps(feitos, ensure_ascii=False, indent=1))
+    for quando, nome, status in sorted(publicados):
+        print("publicado", quando, nome, status)
+
+
 if __name__ == "__main__":
     modo = sys.argv[1] if len(sys.argv) > 1 else "teste"
-    {"teste": teste, "preparar": preparar, "agendar": agendar}.get(modo, teste)()
+    {"teste": teste, "preparar": preparar, "agendar": agendar, "cancelar": cancelar}.get(modo, teste)()
