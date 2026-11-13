@@ -1,48 +1,47 @@
-{"conta_id": "6ae72ffe239c2de2a9a2abf9", "usuario": "giustuart.indica", "criador": {"creator": {"nickname": "Nina | Achadinhos da Shoppee", "avatarUrl": "https://p16-common-sign.tiktokcdn.com/tos-alisg-avt-0068/04a78b95aacacb05254e10ca8f9413ff~tplv-tiktokx-cropcenter:168:168.jpeg?dr=14577&refresh_token=267af8f4&x-expires=1794661200&x-signature=7x5XUlU%2BaTSE1EeihXh90a%2BJJL4%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=8aecc5ac&idc=my2", "isVerified": false, "canPostMore": true}, "privacyLevels": [{"value": "PUBLIC_TO_EVERYONE", "label": "Public To Everyone"}, {"value": "MUTUAL_FOLLOW_FRIENDS", "label": "Mutual Follow Friends"}, {"value": "SELF_ONLY", "label": "Self Only"}], "postingLimits": {"maxVideoDurationSec": 3600, "interactionSettings": {"allow_comment": {"enabled": true, "required": true, "default": false, "label": "Allow Comment"}, "allow_duet": null, "allow_stitch": null}}, "commercialContentTypes": [{"value": "none", "label": "No Commercial Content"}, {"value": "brand_organic", "label": "Your Brand", "requires": ["is_brand_organic_post"]}, {"value": "brand_content", "label": "Branded Content", "requires": ["brand_partner_promote"]}]}}
-conferir casa-de-hotel-gastando-pouco 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir 4-presentes-de-natal-ate-r-40 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir cabelo-e-pele-de-salao-sem-sair-de-casa 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir fachada-de-casa-de-filme-por-r-58 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir pare-de-pagar-caro-no-mercado 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir arvore-completa-com-100-bolas-de-natal 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir mesa-de-natal-com-cara-de-loja-cara 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir enfeite-de-vitrine-de-loja-por-r-27 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir sofa-de-revista-no-natal-por-r-35 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir chaleira-de-inox-com-cara-de-loja-cara-por-r-39 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir presentes-de-natal-pra-ele-que-parecem-caros 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir presente-de-natal-com-significado-por-r-11 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir look-de-loja-cara-gastando-pouco 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir almofada-bordada-de-loja-de-decoracao-por-r-62 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir casa-organizada-com-itens-de-ate-r-30 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir acabamento-de-salao-em-casa-por-r-32 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir treino-com-cara-de-marca-cara 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir 3-ideias-de-amigo-secreto-ate-r-30 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir banheiro-de-hotel-gastando-pouco 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir espelho-de-loja-de-decoracao-por-r-79 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir cama-de-pousada-chique-gastando-pouco 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir 4-presentes-pra-ela-ate-r-40 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir cozinha-de-revista-gastando-pouco 200 published privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir parece-tratamento-de-salao-mas-custa-r-50 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir skincare-de-clinica-gastando-pouco 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir mesa-de-restaurante-chique-por-r-19 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir comece-sua-lista-da-black-friday 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir parece-calca-de-grife-mas-custa-r-57 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir amigo-secreto-pra-ele-ate-r-45 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir some-com-a-bagunca-por-r-7 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir verao-com-cara-de-loja-cara 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir 3-lembrancinhas-de-natal-ate-r-24 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir casa-pronta-pras-visitas-de-fim-de-ano 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir parece-manta-de-hotel-mas-custa-r-54 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir presentes-pra-ele-que-treina 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir geladeira-organizada-por-r-5 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir banheiro-de-spa-gastando-pouco 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir 3-presentes-de-beleza-ate-r-75 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir ceia-de-natal-com-cara-de-buffet 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir parece-fone-de-marca-mas-custa-r-42 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir lista-da-black-friday-pra-casa 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir escova-pra-familia-toda-por-r-29 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir look-de-fim-de-ano-gastando-pouco 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir 4-lembrancinhas-de-amigo-secreto-ate-r-33 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir sala-de-natal-de-revista 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir parece-escova-de-salao-mas-custa-r-50 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
-conferir faxina-de-fim-de-ano-gastando-pouco 200 scheduled privacidade= "PUBLIC_TO_EVERYONE" musica= True
+cancelado mesa-de-restaurante-chique-por-r-19 2026-11-13T13:00 OK
+cancelado comece-sua-lista-da-black-friday 2026-11-13T19:30 OK
+cancelado parece-calca-de-grife-mas-custa-r-57 2026-11-14T13:00 OK
+cancelado amigo-secreto-pra-ele-ate-r-45 2026-11-14T19:30 OK
+cancelado some-com-a-bagunca-por-r-7 2026-11-15T13:00 OK
+cancelado verao-com-cara-de-loja-cara 2026-11-15T19:30 OK
+cancelado 3-lembrancinhas-de-natal-ate-r-24 2026-11-16T13:00 OK
+cancelado casa-pronta-pras-visitas-de-fim-de-ano 2026-11-16T19:30 OK
+cancelado parece-manta-de-hotel-mas-custa-r-54 2026-11-17T13:00 OK
+cancelado presentes-pra-ele-que-treina 2026-11-17T19:30 OK
+cancelado geladeira-organizada-por-r-5 2026-11-18T13:00 OK
+cancelado banheiro-de-spa-gastando-pouco 2026-11-18T19:30 OK
+cancelado 3-presentes-de-beleza-ate-r-75 2026-11-19T13:00 OK
+cancelado ceia-de-natal-com-cara-de-buffet 2026-11-19T19:30 OK
+cancelado parece-fone-de-marca-mas-custa-r-42 2026-11-20T13:00 OK
+cancelado lista-da-black-friday-pra-casa 2026-11-20T19:30 OK
+cancelado escova-pra-familia-toda-por-r-29 2026-11-21T13:00 OK
+cancelado look-de-fim-de-ano-gastando-pouco 2026-11-21T19:30 ERRO 429: {"error": "Rate limit exceeded. Please retry after 10 seconds.", "details": {"currentCount": 61, "limit": 60, "retryAfterSeconds": 10}}
+publicado 2026-11-01T09:35 casa-de-hotel-gastando-pouco published
+publicado 2026-11-01T13:00 4-presentes-de-natal-ate-r-40 published
+publicado 2026-11-01T19:30 cabelo-e-pele-de-salao-sem-sair-de-casa published
+publicado 2026-11-02T13:00 fachada-de-casa-de-filme-por-r-58 published
+publicado 2026-11-02T19:30 pare-de-pagar-caro-no-mercado published
+publicado 2026-11-03T13:00 arvore-completa-com-100-bolas-de-natal published
+publicado 2026-11-03T19:30 mesa-de-natal-com-cara-de-loja-cara published
+publicado 2026-11-04T13:00 enfeite-de-vitrine-de-loja-por-r-27 published
+publicado 2026-11-04T19:30 sofa-de-revista-no-natal-por-r-35 published
+publicado 2026-11-05T13:00 chaleira-de-inox-com-cara-de-loja-cara-por-r-39 published
+publicado 2026-11-05T19:30 presentes-de-natal-pra-ele-que-parecem-caros published
+publicado 2026-11-06T13:00 presente-de-natal-com-significado-por-r-11 published
+publicado 2026-11-06T19:30 look-de-loja-cara-gastando-pouco published
+publicado 2026-11-07T13:00 almofada-bordada-de-loja-de-decoracao-por-r-62 published
+publicado 2026-11-07T19:30 casa-organizada-com-itens-de-ate-r-30 published
+publicado 2026-11-08T13:00 acabamento-de-salao-em-casa-por-r-32 published
+publicado 2026-11-08T19:30 treino-com-cara-de-marca-cara published
+publicado 2026-11-09T13:00 3-ideias-de-amigo-secreto-ate-r-30 published
+publicado 2026-11-09T19:30 banheiro-de-hotel-gastando-pouco published
+publicado 2026-11-10T13:00 espelho-de-loja-de-decoracao-por-r-79 published
+publicado 2026-11-10T19:30 cama-de-pousada-chique-gastando-pouco published
+publicado 2026-11-11T13:00 4-presentes-pra-ela-ate-r-40 published
+publicado 2026-11-11T19:30 cozinha-de-revista-gastando-pouco published
+publicado 2026-11-12T13:00 parece-tratamento-de-salao-mas-custa-r-50 published
+publicado 2026-11-12T19:30 skincare-de-clinica-gastando-pouco published
+publicado 2026-11-22T13:00 4-lembrancinhas-de-amigo-secreto-ate-r-33 None
+publicado 2026-11-22T19:30 sala-de-natal-de-revista None
+publicado 2026-11-23T13:00 parece-escova-de-salao-mas-custa-r-50 None
+publicado 2026-11-23T19:30 faxina-de-fim-de-ano-gastando-pouco None

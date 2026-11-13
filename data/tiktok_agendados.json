@@ -101,71 +101,88 @@
  },
  "mesa-de-restaurante-chique-por-r-19": {
   "id": "6aedd2f602f922800e4c5bc4",
-  "quando": "2026-11-13T13:00:00-03:00"
+  "quando": "2026-11-13T13:00:00-03:00",
+  "cancelado": true
  },
  "comece-sua-lista-da-black-friday": {
   "id": "6aedd2f802f922800e4c5bca",
-  "quando": "2026-11-13T19:30:00-03:00"
+  "quando": "2026-11-13T19:30:00-03:00",
+  "cancelado": true
  },
  "parece-calca-de-grife-mas-custa-r-57": {
   "id": "6aedd2f9cfd9d4b9ab003a32",
-  "quando": "2026-11-14T13:00:00-03:00"
+  "quando": "2026-11-14T13:00:00-03:00",
+  "cancelado": true
  },
  "amigo-secreto-pra-ele-ate-r-45": {
   "id": "6aedd2fa6d82e561be27d19a",
-  "quando": "2026-11-14T19:30:00-03:00"
+  "quando": "2026-11-14T19:30:00-03:00",
+  "cancelado": true
  },
  "some-com-a-bagunca-por-r-7": {
   "id": "6aedd2fb02f922800e4c5be4",
-  "quando": "2026-11-15T13:00:00-03:00"
+  "quando": "2026-11-15T13:00:00-03:00",
+  "cancelado": true
  },
  "verao-com-cara-de-loja-cara": {
   "id": "6aedd2fc02f922800e4c5bea",
-  "quando": "2026-11-15T19:30:00-03:00"
+  "quando": "2026-11-15T19:30:00-03:00",
+  "cancelado": true
  },
  "3-lembrancinhas-de-natal-ate-r-24": {
   "id": "6aedd2fd02f922800e4c5bf3",
-  "quando": "2026-11-16T13:00:00-03:00"
+  "quando": "2026-11-16T13:00:00-03:00",
+  "cancelado": true
  },
  "casa-pronta-pras-visitas-de-fim-de-ano": {
   "id": "6aedd3006d82e561be27d1be",
-  "quando": "2026-11-16T19:30:00-03:00"
+  "quando": "2026-11-16T19:30:00-03:00",
+  "cancelado": true
  },
  "parece-manta-de-hotel-mas-custa-r-54": {
   "id": "6af1d5d154977c010867f2fe",
-  "quando": "2026-11-17T13:00:00-03:00"
+  "quando": "2026-11-17T13:00:00-03:00",
+  "cancelado": true
  },
  "presentes-pra-ele-que-treina": {
   "id": "6af1d5d254977c010867f31c",
-  "quando": "2026-11-17T19:30:00-03:00"
+  "quando": "2026-11-17T19:30:00-03:00",
+  "cancelado": true
  },
  "geladeira-organizada-por-r-5": {
   "id": "6af1d5d454977c010867f33b",
-  "quando": "2026-11-18T13:00:00-03:00"
+  "quando": "2026-11-18T13:00:00-03:00",
+  "cancelado": true
  },
  "banheiro-de-spa-gastando-pouco": {
   "id": "6af1d5d654977c010867f347",
-  "quando": "2026-11-18T19:30:00-03:00"
+  "quando": "2026-11-18T19:30:00-03:00",
+  "cancelado": true
  },
  "3-presentes-de-beleza-ate-r-75": {
   "id": "6af1d5d754977c010867f362",
-  "quando": "2026-11-19T13:00:00-03:00"
+  "quando": "2026-11-19T13:00:00-03:00",
+  "cancelado": true
  },
  "ceia-de-natal-com-cara-de-buffet": {
   "id": "6af1d5d954977c010867f38b",
-  "quando": "2026-11-19T19:30:00-03:00"
+  "quando": "2026-11-19T19:30:00-03:00",
+  "cancelado": true
  },
  "parece-fone-de-marca-mas-custa-r-42": {
   "id": "6af1d5db54977c010867f3a5",
-  "quando": "2026-11-20T13:00:00-03:00"
+  "quando": "2026-11-20T13:00:00-03:00",
+  "cancelado": true
  },
  "lista-da-black-friday-pra-casa": {
   "id": "6af1d5dc54977c010867f3b6",
-  "quando": "2026-11-20T19:30:00-03:00"
+  "quando": "2026-11-20T19:30:00-03:00",
+  "cancelado": true
  },
  "escova-pra-familia-toda-por-r-29": {
   "id": "6af1d5de54977c010867f3c7",
-  "quando": "2026-11-21T13:00:00-03:00"
+  "quando": "2026-11-21T13:00:00-03:00",
+  "cancelado": true
  },
  "look-de-fim-de-ano-gastando-pouco": {
   "id": "6af1d5df1fde4e7ab7c48a97",
